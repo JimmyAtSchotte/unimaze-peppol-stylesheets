@@ -34,6 +34,7 @@
     <xsl:output method="html" doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN" doctype-system="http://www.w3.org/TR/html4/loose.dtd" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="stylesheet_url" select="'NONE'"/>
+    <xsl:param name="requestedContentFormat" />
     <xsl:variable name="borderColor">
         <xsl:choose>
             <xsl:when test="/Invoice !=''">
@@ -570,7 +571,9 @@
                 <title>PEPPOL BIS-BILLING 3 Invoice AND CREDIT NOTE</title>
             </head>
             <body>
-                <xsl:call-template name="UnimazeHeader"/>
+                <xsl:if test="$requestedContentFormat!='pdf'">
+                    <xsl:call-template name="UnimazeHeader"/>
+                </xsl:if>
                 <div class="wrapper">
                     <div class="container">
                         <header class="main_header grid_big_2fr_spliter">
