@@ -73,7 +73,7 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    <!-- UNIMAZE HEADLINES TEMPLATE -->
+    <!-- UNIMAZE HEADLINES TEMPLATE  -->
     <xsl:template name="UMZLabelName">
         <xsl:param name="BT-ID" />
         <!-- BT inparameter -->
