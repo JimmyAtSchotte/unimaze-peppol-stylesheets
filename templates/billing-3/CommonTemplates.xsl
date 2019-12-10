@@ -318,6 +318,21 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+    <!--Function to format time-->
+    <xsl:template name="formatTime">
+        <xsl:param name="time" />
+        <xsl:variable name="hours" select="substring-before($time, ':')" />
+        <xsl:variable name="minutes" select="substring-before(substring-after($time, ':'), ':')" />
+        <xsl:variable name="seconds" select="substring-after(substring-after(substring-before($time, '.'), ':'), ':')" />
+        <xsl:choose>
+            <xsl:when test="($hours !='') or ($minutes !='') or ($seconds !='')">
+                <xsl:value-of select="concat($hours, ':', $minutes, ':', $seconds)" />
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$time" />
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
     <!-- Function to format numbers -->
     <xsl:template name="NumberFormat">
         <xsl:param name="value" />
@@ -1356,6 +1371,16 @@
                 </xsl:otherwise>
             </xsl:choose>
         </span>
+    </xsl:template>
+    <xsl:template name="SellerSupplierPartyID">
+        <xsl:choose>
+            <xsl:when test="cac:SellerSupplierParty/cac:Party/cbc:EndpointID !=''">
+                <xsl:value-of select="cac:SellerSupplierParty/cac:Party/cbc:EndpointID" />
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="cac:SellerSupplierParty/cac:Party/cac:PartyLegalEntity/cbc:CompanyID" />
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     <xsl:template name="AdditionalInfoSellerSupplierPartyNameTitle">
         <xsl:choose>
